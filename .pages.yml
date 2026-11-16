@@ -1,0 +1,19 @@
+media:
+  input: public/images
+  output: /images
+
+content:
+  - name: offres
+    label: Offres & Promos du mois
+    type: file
+    path: src/data/offres.json
+    fields:
+      - name: titre_promo
+        label: Titre de l'offre
+        type: string
+      - name: description_promo
+        label: Description de l'offre
+        type: text
+      - name: photo_promo
+        label: Photo de l'offre
+        type: image
