@@ -1,0 +1,264 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-heading: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-label: 'Inter', system-ui, sans-serif;
+
+  /* Background — noir profond → surfaces légèrement plus claires */
+  --background-50: 0.152 0.004 265;   /* #0B0B0E · fond de page */
+  --background-100: 0.183 0.005 265;  /* #111216 · cartes / panneaux */
+  --background-200: 0.232 0.006 265;  /* #191A20 · bordures, relief */
+  --background-300: 0.290 0.007 265;
+  --background-400: 0.355 0.008 265;
+  --background-500: 0.445 0.009 265;
+  --background-600: 0.555 0.009 265;
+  --background-700: 0.665 0.008 265;
+  --background-800: 0.790 0.007 265;
+  --background-900: 0.900 0.005 265;
+  --background-950: 0.975 0.003 265;  /* #F8F8FA · surface claire */
+
+  /* Foreground — échelle de texte (du plus sombre au plus clair) */
+  --foreground-50: 0.380 0.006 265;
+  --foreground-100: 0.480 0.007 265;
+  --foreground-200: 0.580 0.008 265;
+  --foreground-300: 0.670 0.009 265;  /* chiffres inactifs */
+  --foreground-400: 0.755 0.009 265;  /* #AFB1B9 · labels discrets */
+  --foreground-500: 0.818 0.009 265;  /* #C6C8CF · texte secondaire */
+  --foreground-600: 0.862 0.008 265;
+  --foreground-700: 0.900 0.007 265;  /* #DEDFE4 · paragraphes */
+  --foreground-800: 0.936 0.005 265;
+  --foreground-900: 0.962 0.004 265;
+  --foreground-950: 0.977 0.002 265;  /* #F7F7F9 · titres */
+
+  /* Primary — bleu pervenche (accents, états actifs, liens) */
+  --primary-50: 0.235 0.046 274;
+  --primary-100: 0.292 0.062 274;
+  --primary-200: 0.362 0.082 274;
+  --primary-300: 0.520 0.122 274;
+  --primary-400: 0.660 0.148 274;     /* #A3AEF2 · icônes */
+  --primary-500: 0.745 0.135 274;     /* #BEC5F7 · accent lumineux */
+  --primary-600: 0.690 0.148 274;
+  --primary-700: 0.610 0.138 274;
+  --primary-800: 0.510 0.118 274;
+  --primary-900: 0.410 0.098 274;
+  --primary-950: 0.300 0.072 274;
+
+  /* Accent — violet froid (profondeur, dégradés) */
+  --accent-50: 0.235 0.042 300;
+  --accent-100: 0.295 0.058 300;
+  --accent-200: 0.368 0.078 300;
+  --accent-300: 0.520 0.118 300;
+  --accent-400: 0.640 0.140 300;
+  --accent-500: 0.700 0.138 300;
+  --accent-600: 0.640 0.140 300;
+  --accent-700: 0.560 0.126 300;
+  --accent-800: 0.470 0.108 300;
+  --accent-900: 0.380 0.088 300;
+  --accent-950: 0.285 0.068 300;
+
+  /* Secondary — gris froid (UI de support, filtres, métadonnées) */
+  --secondary-50: 0.235 0.008 255;
+  --secondary-100: 0.295 0.010 255;
+  --secondary-200: 0.370 0.012 255;
+  --secondary-300: 0.470 0.014 255;
+  --secondary-400: 0.580 0.015 255;
+  --secondary-500: 0.680 0.016 255;
+  --secondary-600: 0.760 0.014 255;
+  --secondary-700: 0.840 0.010 255;
+  --secondary-800: 0.900 0.007 255;
+  --secondary-900: 0.945 0.004 255;
+  --secondary-950: 0.980 0.002 255;
+}
+
+html,
+body {
+  background-color: oklch(var(--background-50));
+  color: oklch(var(--foreground-950));
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-image:
+    radial-gradient(ellipse 70% 45% at 50% 0%, oklch(var(--primary-500) / 0.07), transparent 70%),
+    radial-gradient(ellipse 60% 40% at 85% 20%, oklch(var(--accent-500) / 0.05), transparent 70%);
+  background-repeat: no-repeat;
+}
+
+/* Selection — pervenche sur fond sombre */
+::selection {
+  background: oklch(var(--primary-500) / 0.28);
+  color: oklch(var(--foreground-950));
+}
+
+/* Scrollbar — fine et discrète */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: oklch(var(--background-50));
+}
+::-webkit-scrollbar-thumb {
+  background: oklch(var(--foreground-950) / 0.12);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(var(--foreground-950) / 0.22);
+}
+
+/* Carte sombre — hairline + ombre profonde */
+.card-shadow {
+  box-shadow:
+    inset 0 1px 0 oklch(var(--foreground-950) / 0.04),
+    0 24px 60px -36px rgba(0, 0, 0, 0.9);
+}
+
+/* Surface type "carte" du nouveau langage visuel */
+.surface {
+  background-color: oklch(var(--background-100));
+  border: 1px solid oklch(var(--foreground-950) / 0.08);
+  box-shadow:
+    inset 0 1px 0 oklch(var(--foreground-950) / 0.035),
+    0 24px 60px -36px rgba(0, 0, 0, 0.9);
+}
+
+/* Grain très léger — profondeur sur les fonds noirs */
+.flesh-grain-layer {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'><filter id='gn'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23gn)' opacity='0.05'/></svg>");
+  pointer-events: none;
+}
+
+.flesh-grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  opacity: 0.5;
+  mix-blend-mode: soft-light;
+}
+
+/* Lignes verticales de composition — signature du site de référence */
+.guides {
+  background-image: linear-gradient(
+    to right,
+    oklch(var(--foreground-950) / 0.06) 0 1px,
+    transparent 1px 100%
+  );
+  background-size: 25% 100%;
+  background-repeat: repeat-x;
+  opacity: 0.9;
+}
+
+/* Reveal on scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 900ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Dégradé de titre — blanc → pervenche */
+.coral-text,
+.copper-text {
+  background: linear-gradient(100deg, #F7F7F9 0%, #D6DAFB 45%, #9FACF3 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Prix — même dégradé, avec un halo pervenche */
+.pricing-glow {
+  background: linear-gradient(100deg, #F7F7F9 0%, #DDE1FC 50%, #A9B4F4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 2px 18px oklch(var(--primary-500) / 0.25));
+}
+
+/* Bouton principal — pilule claire, texte noir */
+.copper-btn,
+.coral-btn,
+.copper-btn-light,
+.coral-btn-light {
+  background: oklch(var(--foreground-950));
+  color: oklch(var(--background-50));
+  transition: background-color 400ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.copper-btn:hover,
+.coral-btn:hover,
+.copper-btn-light:hover,
+.coral-btn-light:hover {
+  background: oklch(var(--foreground-900));
+}
+
+/* Bouton secondaire sombre */
+.ghost-btn {
+  border: 1px solid oklch(var(--foreground-950) / 0.16);
+  color: oklch(var(--foreground-950));
+  background: transparent;
+  transition:
+    border-color 400ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 400ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.ghost-btn:hover {
+  border-color: oklch(var(--foreground-950) / 0.32);
+  background: oklch(var(--foreground-950) / 0.05);
+}
+
+/* Accent pervenche — icônes, puces */
+.gold-accent,
+.coral-accent {
+  color: oklch(var(--primary-400));
+}
+
+.gold-line,
+.coral-line {
+  background: oklch(var(--primary-500) / 0.7);
+}
+
+.green-btn-light {
+  background: oklch(var(--primary-500));
+  color: oklch(var(--background-50));
+}
+
+/* Anti-spam honeypot */
+.hp-guard {
+  position: absolute !important;
+  left: -10000px !important;
+  top: auto !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
